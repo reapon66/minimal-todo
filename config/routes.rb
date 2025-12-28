@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "listar/users" => "user#listar_all"
-
+  get "listar/users" => "users#index"
+  post "cadastrar/user" => "users#create"
 end
