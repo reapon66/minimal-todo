@@ -10,28 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_26_233256) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_30_080526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "tarefas", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
+    t.text "content"
     t.datetime "created_at", null: false
-    t.text "descricao", null: false
-    t.boolean "status", default: false, null: false
-    t.string "titulo", limit: 128, null: false
+    t.boolean "status"
+    t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_tarefas_on_user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.string "nome", null: false
-    t.text "senha", null: false
+    t.string "name"
+    t.string "password_digest"
     t.datetime "updated_at", null: false
-    t.string "user_name", null: false
-    t.index ["user_name"], name: "index_users_on_user_name", unique: true
+    t.string "user_name"
   end
 
-  add_foreign_key "tarefas", "users"
+  add_foreign_key "tasks", "users"
 end

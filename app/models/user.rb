@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  has_many :tarefas, dependent: :destroy
+  has_secure_password
 
-
-  validates :nome, presence: true
+  validates :name, presence: true
   validates :user_name, presence: true, uniqueness: true
-  validates :senha, presence: true
 end
