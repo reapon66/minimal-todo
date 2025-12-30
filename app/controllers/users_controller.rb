@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-  def index
-    usuarios = Users::ListarTodos.call
+def index
+  usuarios = Users::ListarTodos.call
 
-    render json: usuarios.map{ |u| UserSerializer.new(u).as_json},
-           status: :ok
-  end
+  render json: {
+    users: usuarios.map { |u| UserSerializer.new(u).as_json }
+  }, status: :ok
+end
+
 
   def create
     usuario = Users::Cadastrar.call(user_params)
