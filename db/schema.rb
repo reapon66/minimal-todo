@@ -20,6 +20,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_26_233256) do
     t.boolean "status", default: false, null: false
     t.string "titulo", limit: 128, null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_tarefas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,5 +33,5 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_26_233256) do
     t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
-  add_foreign_key "tarefas", "users", column: "id"
+  add_foreign_key "tarefas", "users"
 end

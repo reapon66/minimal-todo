@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
   def index
     usuarios = Users::ListarTodos.call
     render json: usuarios
@@ -12,10 +10,6 @@ class UsersController < ApplicationController
 
     usuario = Users::Cadastrar.call(user_params)
     render json: usuario, status: :created
-  rescue ActiveRecord::RecordInvalid => e
-    render json: {
-      erros: e.record.errors.full_messages
-    }, status: :unprocessable_entity
   end
 
   private

@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        blank: "não pode ficar em branco"
+        taken: "já está em uso"
+        too_short: "é muito curto"
+        too_long: "é muito longo"
+        invalid: "não é válido"
+        confirmation: "não coincide com a confirmação"
+        greater_than: "deve ser maior que %{count}"
+        less_than: "deve ser menor que %{count}"
+        not_a_number: "não é um número"
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        required: "é obrigatório"
