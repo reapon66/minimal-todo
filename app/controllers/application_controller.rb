@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
 
 
-    def render_unprocessable_entity(exception)
+  def render_unprocessable_entity(exception)
     errors = exception.record.errors.map do |error|
     { campo: error.attribute.to_s, msg: error.message }
     end
