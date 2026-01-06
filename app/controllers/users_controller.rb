@@ -6,11 +6,6 @@ class UsersController < ApplicationController
            status: :created
   end
 
-  def login
-    usuario Users::Login.call(user_params)
-    render json: UserSerializer.new(usuario).as_json
-  end
-
   private
 
   def user_params

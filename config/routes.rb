@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   # root "posts#index"
   post "login/" => "login#login"
   post "user/cadastro" => "users#create"
+  post "user/task/create" => "tarefa#create"
 end

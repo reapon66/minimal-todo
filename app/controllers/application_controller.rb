@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::API
+  before_action :authenticate_user!
+
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
   rescue_from ActiveRecord::RecordNotUnique, with: :render_conflict
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
   rescue_from ActionController::ParameterMissing, with: :render_parameter_missing
-
 
 
   def render_unprocessable_entity(exception)
@@ -23,5 +24,23 @@ class ApplicationController < ActionController::API
 
   def render_parameter_missing(exception)
     render json: { errors: [ { campo: exception.param.to_s, msg: "Parâmetro obrigatório ausente" } ] }, status: :bad_request
+  end
+
+  private
+
+  def current_user
+    return @current_user if @current_user
+
+    token = request.headers["Authorization"]&.split(" ")&.last
+    return nil unless token
+
+    decoded = JwtService.decode(token)
+    @current_user = User.find_by(id: decoded["user_id"])
+  rescue
+    nil
+  end
+
+  def authenticate_user!
+    render json: { error: "Não autorizado" }, status: :unauthorized unless current_user
   end
 end

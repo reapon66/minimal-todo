@@ -5,7 +5,6 @@ class UserSerializer
 
     def as_json(*)
       {
-        id: @user.id,
         name: @user.name,
         user_name: @user.user_name
       }
