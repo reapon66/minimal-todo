@@ -2,7 +2,7 @@ class TarefaController < ApplicationController
   def create
     task = Todos::Cadastrar.call(current_user, tasks_params)
 
-    render json: task.as_json, status: :created
+    render json: TaskSerializer.new(task).as_json, status: :created
   end
 
   private
